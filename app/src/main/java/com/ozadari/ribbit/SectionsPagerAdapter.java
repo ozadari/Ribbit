@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.content.Context;
+import android.support.v4.app.ListFragment;
+import android.util.Log;
 
 import java.util.Locale;
 
@@ -21,16 +23,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public ListFragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+        Log.i("sectionPAGERadapter", "start");
         switch(position) {
             case 0:
-                //return new InboxFragment();
+                Log.i("sectionPAGERadapter","creating inbox fragment");
+                InboxFragment iff = new InboxFragment();
+                Log.i("sectionPAGERadapter","end");
+                return iff;
+
             case 1:
-               // return new FriendsFragment();
-            default:
-              //  return LoginActivity();
+                return new FriendsFragment();
         }
         return null;
     }

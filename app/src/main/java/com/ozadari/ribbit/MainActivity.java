@@ -10,12 +10,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.parse.ParseUser;
 
@@ -42,6 +40,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ParseUser current = ParseUser.getCurrentUser();
         if (current == null) {
             //Switching to login activity
@@ -52,19 +51,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             Log.i(TAG,current.getUsername());
         }
 
-
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(this,getSupportFragmentManager());
 
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
         // a reference to the Tab.
@@ -109,11 +108,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_logout) {
-            ParseUser.logOut();
-            navigateToLogin();
-            return true;
+        switch(item.getItemId())
+        {
+            case R.id.action_logout:
+                ParseUser.logOut();
+                navigateToLogin();
+                return true;
+            case R.id.action_edit_friends:
+                Intent intent = new Intent(this,EditFriendsActivity.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
