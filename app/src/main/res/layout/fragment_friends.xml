@@ -4,18 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.ozadari.ribbit.MainActivity$PlaceholderFragment">
 
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/empty_friends_label"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@id/android:list"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false" />
-
-    <TextView
-        android:id="@+id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/empty_friends_label"/>
 
 
 </RelativeLayout>

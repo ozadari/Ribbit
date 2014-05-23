@@ -9,5 +9,6 @@
         android:layout_height="wrap_content"
         android:id="@android:id/list"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:choiceMode="multipleChoice"/>
 </RelativeLayout>
