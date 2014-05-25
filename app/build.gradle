@@ -19,6 +19,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v13:+'
     compile fileTree('src/main/libs')//
+    compile 'com.android.support:support-v13:+'
+    compile 'com.android.support:appcompat-v7:19.+'
 }

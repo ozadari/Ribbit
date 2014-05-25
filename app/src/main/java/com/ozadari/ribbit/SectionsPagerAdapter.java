@@ -26,12 +26,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public ListFragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        Log.i("sectionPAGERadapter", "start");
         switch(position) {
             case 0:
-                Log.i("sectionPAGERadapter","creating inbox fragment");
                 InboxFragment iff = new InboxFragment();
-                Log.i("sectionPAGERadapter","end");
                 return iff;
 
             case 1:

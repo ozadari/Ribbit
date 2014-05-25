@@ -10,4 +10,10 @@
         android:title="@string/menu_logout_label"
         />
 
+    <item
+        android:id="@+id/action_camera"
+        android:title="@string/menu_camera_label"
+        android:icon="@drawable/ic_action_camera"
+        android:showAsAction="always"
+        />
 </menu>
