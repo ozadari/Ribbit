@@ -20,9 +20,14 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.io.File;
@@ -31,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -264,6 +270,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             }
             Intent recipientsIntent = new Intent(this,RecipientsActivity.class);
             recipientsIntent.setData(mMediaUri);
+
+            String fileType;
+            if(requestCode==CHOOSE_PHOTO_REQUEST||requestCode==TAKE_PHOTO_REQUEST)
+            {
+                fileType = ParseConstants.TYPE_IMAGE;
+            }
+            else
+                fileType = ParseConstants.TYPE_VIDEO;
+
+            recipientsIntent.putExtra(ParseConstants.KEY_FILE_TYPE,fileType);
+
             startActivity(recipientsIntent);
         }
         else if(resultCode !=RESULT_CANCELED)
@@ -290,16 +307,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             case R.id.action_logout:
                 ParseUser.logOut();
                 navigateToLogin();
+                break;
 
             case R.id.action_edit_friends:
                 Intent intent = new Intent(this,EditFriendsActivity.class);
                 startActivity(intent);
+                break;
 
             case R.id.action_camera:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setItems(R.array.camera_choices,mDialogListener);
                 builder.create().show();
-
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

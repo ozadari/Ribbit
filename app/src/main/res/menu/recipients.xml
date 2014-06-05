@@ -8,5 +8,6 @@
         android:title="Send"
         android:showAsAction="always"
         android:visible="false"
+        android:icon="@drawable/ic_action_send_now"
         />
 </menu>
